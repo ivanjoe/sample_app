@@ -1,0 +1,12 @@
+<table class="profile" summary="Profile information">
+  <tr>
+    <td class="main">
+        <table class="microposts" summary="User microposts">
+          <%= render @microposts %>
+        </table>
+        <%= will_paginate @microposts %>
+    </td>
+    <td class="sidebar round">
+    </td>
+  </tr>
+</table>

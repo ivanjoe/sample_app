@@ -6,6 +6,11 @@ describe "LayoutLinks" do
     get '/'
     response.should have_selector('title', :content => "Home")
   end
+  
+  it "should have the right number of microposts shown in the sidebar" do
+    get '/'
+    response.should have_selector('span', :class => "microposts")
+  end
 
   it "should have a Contact page at '/contact'" do
     get '/contact'

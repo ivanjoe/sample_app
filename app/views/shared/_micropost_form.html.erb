@@ -1,8 +1,27 @@
 <%= form_for @micropost do |f| %>
   <%= render 'shared/error_messages', :object => f.object %>
   <div class="field">
-    <%= f.text_area :content %>
+  <!-- Script from: http://www.astral-consultancy.co.uk/cgi-bin/hunbug/doco.cgi?11290 -->
+    <script>
+      function textCounter(textarea, countdown, maxlimit)
+      {
+        textareaid = document.getElementById(textarea);
+        if (textareaid.value.length > maxlimit)
+          textareaid.value = textareaid.value.substring(0, maxlimit);
+        else
+          document.getElementById(countdown).value = (maxlimit-textareaid.value.length)+' characters available';
+      }
+    </script>
+    
+    <input id="counter" readonly type="text" style="border:none; float:right;" />
+    
+    <%= f.text_area :content,
+      :onkeydown => "textCounter('micropost_content','counter',140);",
+      :onkeyup => "textCounter('micropost_content','counter',140);"  %>    
   </div>
+  <script>
+    textCounter('micropost_content', 'counter', 140);
+  </script>
   <div class="actions">
     <%= f.submit "Submit" %>
   </div>
